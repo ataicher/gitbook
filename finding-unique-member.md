@@ -78,7 +78,7 @@ This algoirthm has time-complexity $$O(N)$$ and space complexity $$O(1)$$!
 
 Let's generalize the problem to a list where all integers appear $$k$$ times except for one which appears $$m$$ times.
 
-The same code using $$XOR$$ above still works when $$m$$ is even and $$k$$ is odd.  What about $$k=3$$ and $$m=1$$? In this case we need to keep track of more variables.  Since bit operations act on each bit independently, lets consider the lists with only $$1's$$ and $$0's$$. Every iteration we'd like to count the number of 1's mod 3. To do this we track,
+The same code using $$XOR$$ above still works when $$k$$ is even and $$m$$ is odd (or viceversa!).  What about $$k=3$$ and $$m=1$$? In this case we need to keep track of more variables as we iterate through the list.  Since bit operations act on each bit independently, lets consider the lists with only $$1's$$ and $$0's$$. Every iteration we'd like to count the number of 1's mod 3. To do this we track,
 
 * $$a = 1$$ if $$1$$ has appearred once
 * $$b = 1$$ if $$1$$ has appearred twice
