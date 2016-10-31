@@ -45,7 +45,7 @@ x | x = x
 x ^ x = 0
 ```
 
-The $$XOR$$ operater, ```^``` looks like it might be useful since we are trying to eliminate duplicates from a list.  If we could just rearange ```nums``` so that duplicate integers are next to each other with the unique member at the end, then chaining all the members of ```nums``` with $$XOR$$ would give us the unique integer. Fortunately, $$XOR$$ is both commutative and _associative_.  To see this, note that all bitwise operators operate on each bit independentyl and build the truth table
+The $$XOR$$ operater, ```^``` looks like it might be useful since we are trying to eliminate duplicates from a list.  If we could just rearange ```nums``` so that duplicate integers are next to each other with the unique member at the end, then chaining all the members of ```nums``` with $$XOR$$ would give us the unique integer. Fortunately, $$XOR$$ is both commutative and _associative_.  To see this, note that all bitwise operators act on each bit independently and build the truth table:
 
 | a | b | c | (a^b)^c | a^(b^c) | 
 |---|---|---|:-------:|:-------:| 
@@ -56,8 +56,7 @@ The $$XOR$$ operater, ```^``` looks like it might be useful since we are trying 
 | 1 | 0 | 0 | 1       | 1       | 
 | 1 | 0 | 1 | 0       | 0       | 
 | 1 | 1 | 0 | 0       | 0       |  
-| 1 | 1 | 1 | 0       | 0       |
-
+| 1 | 1 | 1 | 1       | 1       |
 
 So the result of chaining $$XOR$$ operations is _independent_ of order.
 
