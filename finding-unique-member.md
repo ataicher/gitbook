@@ -82,8 +82,9 @@ The same code using $$XOR$$ above still works when $$k$$ is even and $$m$$ is od
 
 * $$a = 1$$ if $$1$$ has appearred once
 * $$b = 1$$ if $$1$$ has appearred twice
-* if $$a = 1$$ and $$b = 1$$ reset $a
-  if a 1 has appeared once, and if  number that track if a 1 has appeared $$l$$ times such that an odd number of times and a number that tracks if a 1 has appeared an odd multiple of 2 `[1,1,0,1,0,0,1].`  
+* if $$a = 1$$ and $$b = 1$$ reset $$a$$ and $$b$$
+
+If a 1 has appeared once, and if number that track if a 1 has appeared $$l$$ times such that an odd number of times and a number that tracks if a 1 has appeared an odd multiple of 2 `[1,1,0,1,0,0,1].`  
 
 | nums | a | b |
 |---|:-:|:-:|
@@ -94,4 +95,71 @@ The same code using $$XOR$$ above still works when $$k$$ is even and $$m$$ is od
 | 0 | 0 | 0 |
 | 0 | 0 | 1 |
 | 1 | 1 | 0 |
+
+```python
+def FindUniqueMember(nums):
+    a = 0, b = 0
+    for n in nums:
+        # 1 if a is 1 and the next number in the list is 1.
+        # otherwise, remain the same
+        b |= a & n
+
+        # 1 if a 1 has appeared an odd number of times
+        a ^= n
+
+        # when a = 1 and b = 1, we have see three 1's so 
+        # we reset a and b
+        a &= ~(a&b), b &= ~(a&b)
+
+    # now a stores all the bit positions that have appeared     
+    #l times where l mod 3 = 1
+    return a
+```
+
+#### Follow up Part 2
+
+Now consider we have a list of integers in which every element appears twice except for _two_.  Find the two integers. The order of the result is not important.
+
+We can extend the power of $XOR$. To
+
+ # xor of all the elements in nums means:
+
+ # if a bit is 0 then a and b have the same bit
+
+ # if a bit is 1 then a and b are different for that bit
+
+ axorb = 0
+
+ for n in nums:
+
+ axorb ^= n
+
+
+
+ # since a and b are unique axorb != 0. Find the first 1 bit and clear the rest
+
+ # We can use this bit to split nums into two list. Each list has all elements appearing twice
+
+ # and one element appearing once
+
+ firstNonZeroBit = (axorb & (axorb - 1)) ^ axorb
+
+
+
+ result = [0, 0]
+
+ for n in nums:
+
+ if n & firstNonZeroBit == 0:
+
+ result[0] ^= n
+
+ else:
+
+ result[1] ^= n
+
+
+
+ return result
+
 
